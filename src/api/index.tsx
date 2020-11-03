@@ -22,14 +22,14 @@ export const getIssues = async () => {
   return await issues.data.items;
 };
 
-export const fetchIssueReadme = async urlIssue => {
+export const fetchIssueReadme = async (urlIssue: any) => {
   return await axios.get(`${urlIssue}/readme`);
 };
 
-export const renderIssueReadme = async urlReadme => {
+export const renderIssueReadme = async (urlReadme: any) => {
   return await axios.get(urlReadme);
 };
 
-export const getComments = async urlComments => {
+export const getComments = async (urlComments: any) => {
   return await axios.get(urlComments);
 };
