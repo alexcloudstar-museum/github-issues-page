@@ -4,8 +4,6 @@ const url = 'https://api.github.com';
 
 const githubToken = process.env.REACT_APP_GITHUB_API_TOKEN;
 
-console.log(process.env);
-
 export const fetchIssues = async () => {
   return await axios.get(
     `${url}/search/issues?q={facebook}&per_page=100&page_number=1`,
