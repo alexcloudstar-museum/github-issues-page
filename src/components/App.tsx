@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './App.scss';
+import GlobalStyles from '../globalStyles';
 
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -33,6 +33,7 @@ const App = () => {
 
   return (
     <>
+      <GlobalStyles />
       {isLoading ? (
         <Spinner />
       ) : (

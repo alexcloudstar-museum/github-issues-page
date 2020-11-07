@@ -1,3 +1,6 @@
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
 html,
 body {
   min-height: 100vh;
@@ -6,7 +9,6 @@ body {
 .App {
   display: flex;
   justify-content: center;
-  //   height: 100vh;
   align-items: center;
   flex-direction: column;
 }
@@ -14,3 +16,6 @@ body {
 li {
   list-style-type: none;
 }
+`;
+
+export default GlobalStyle;

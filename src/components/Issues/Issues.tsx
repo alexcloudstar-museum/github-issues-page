@@ -1,5 +1,5 @@
 import React from 'react';
-import './Issues.scss';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,9 +7,60 @@ import {
   faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
+const IssuesWrapper = styled.div`
+  height: 100%;
+  border: 1px solid #ccc;
+
+  .Issue {
+    background-color: #f6f8fa;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ccc;
+
+    .header {
+      margin-bottom: 10px;
+      .status {
+        .fa-exclamation-circle {
+          color: #eb4034;
+        }
+      }
+      h5 {
+        font-size: 18px;
+        margin: 0 5px 0 5px;
+      }
+    }
+
+    .labels {
+      .label {
+        margin: 0 5px;
+        padding: 3px;
+      }
+    }
+
+    .infoTicket {
+      color: #586069;
+    }
+  }
+
+  .issueMD {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    text-align: left;
+    background: #fbfbfb;
+    padding: 15px;
+  }
+
+  @media (max-width: 767px) {
+    .issueMD {
+      width: 100%;
+      padding: 0;
+    }
+  }
+`;
+
 const Issues: React.FC<IssuesProps> = ({ issues }) => {
   return (
-    <div className='Issues'>
+    <IssuesWrapper>
       {issues.map(({ id, state, title, labels, created_at, user }) => {
         return (
           <div className='Issue' key={id}>
@@ -52,7 +103,7 @@ const Issues: React.FC<IssuesProps> = ({ issues }) => {
           </div>
         );
       })}
-    </div>
+    </IssuesWrapper>
   );
 };
 
