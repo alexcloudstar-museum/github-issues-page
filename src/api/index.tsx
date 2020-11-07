@@ -3,7 +3,8 @@ require('dotenv').config();
 
 // Add .env in root foler with the following -> REACT_APP_GITHUB_TOKEN=YOUR_TOKEN
 const url = 'https://api.github.com';
-const githubToken = process.env.REACT_APP_GITHUB_TOKEN;
+const githubToken = `b600ce0315babd2b1239135058461f6bbf0a06cc
+`;
 
 export const fetchIssues = async () => {
   return await axios.get(
