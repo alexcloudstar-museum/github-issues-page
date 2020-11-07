@@ -4,3 +4,5 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/alexcloudstar/github-issues-page?color=blue)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/alexcloudstar/github-issues-page)
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/alexcloudstar/github-issues-page)
+![GitHub language count](https://img.shields.io/github/languages/count/alexcloudstar/github-issues-page)
+![GitHub top language](https://img.shields.io/github/languages/top/alexcloudstar/github-issues-page)
