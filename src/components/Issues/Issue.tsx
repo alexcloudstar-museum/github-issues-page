@@ -1,45 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Issues.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCheckCircle,
-  faTimesCircle,
-} from '@fortawesome/free-solid-svg-icons';
 
-const Issue: React.FC<IssueProps> = ({
-  id,
-  text,
-  isOpen,
-  ticketNumber,
-  badges,
-}) => {
+import Markdown from '../MarkDown/Markdown';
+import Comments from '../Comments/Comments';
+
+import { getIssues } from '../../api';
+import Spinner from '../Spinner/Spinner';
+
+const Issue: React.FC<IssueProps> = ({ match }) => {
+  const [issue, setIssue] = useState<issueProps>();
+  const [isLoading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    getIssues().then(res => {
+      res.map((resIssues: any) => {
+        if (resIssues.id === match.params.id * 1) {
+          setIssue(resIssues);
+        }
+        return '';
+      });
+    });
+    setLoading(false);
+  }, [match.params.id]);
+
   return (
-    <div className='Issue'>
-      <div className='header'>
-        <span className='isOpen'>
-          {isOpen ? (
-            <FontAwesomeIcon icon={faCheckCircle} />
-          ) : (
-            <FontAwesomeIcon icon={faTimesCircle} />
-          )}
-        </span>
-        <h4 className='title'>{text}</h4>
-        <span className='Badges'>
-          {badges.map(badge => {
-            return (
-              <span
-                key={id}
-                className='Badge'
-                style={{ backgroundColor: badge.color }}
-              >
-                {badge.text}
-              </span>
-            );
-          })}
-        </span>
-      </div>
-      <p>{ticketNumber}</p>
-    </div>
+    <>
+      {isLoading || issue === undefined || issue === null ? (
+        <Spinner />
+      ) : (
+        <React.Fragment>
+          {issue && <Markdown repoURL={issue.repository_url} />}
+          {issue && <Comments commentsURL={issue.comments_url} />}
+        </React.Fragment>
+      )}
+    </>
   );
 };
 

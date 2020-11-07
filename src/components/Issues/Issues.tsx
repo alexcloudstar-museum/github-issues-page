@@ -1,107 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Issues.scss';
-import Issue from './Issue';
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCheckCircle,
+  faExclamationCircle,
+} from '@fortawesome/free-solid-svg-icons';
 
-const Issues = () => {
-  const [issues, setIssues] = useState([
-    {
-      id: 0,
-      text: 'Progress bar when run `npm run build`',
-      isOpen: true,
-      number: '#8672',
-      badges: [
-        {
-          text: 'issue: bug report',
-          color: 'orange',
-        },
-        {
-          text: 'issue: proposal',
-          color: 'yellow',
-        },
-      ],
-    },
-    {
-      id: 1,
-      text: 'Proxy docs still outdated',
-      isOpen: false,
-      number: '#5292',
-      badges: [
-        {
-          text: 'needs triage',
-          color: 'red',
-        },
-      ],
-    },
-    {
-      id: 2,
-      text: 'Mozilla docs still outdated',
-      isOpen: false,
-      number: '#52922',
-      badges: [
-        {
-          text: 'needs triage',
-          color: 'red',
-        },
-      ],
-    },
-    {
-      id: 3,
-      text: 'Renaming file or folder breaks hot-reload',
-      isOpen: true,
-      number: '#52921',
-      badges: [
-        {
-          text: 'issue: bug report',
-          color: 'orange',
-        },
-        {
-          text: 'issue: proposal',
-          color: 'yellow',
-        },
-      ],
-    },
-    {
-      id: 4,
-      text: 'Yarn Not Starting',
-      isOpen: true,
-      number: '#22312',
-      badges: [
-        {
-          text: 'issue: need triage',
-          color: 'red',
-        },
-        {
-          text: 'issue: proposal',
-          color: 'yellow',
-        },
-      ],
-    },
-    {
-      id: 5,
-      text:
-        'Images in CSS are not present in manifest but present as versioned files in the production build',
-      isOpen: true,
-      number: '#22312',
-      badges: [
-        {
-          text: 'issue: proposal',
-          color: 'yellow',
-        },
-      ],
-    },
-  ]);
+const Issues: React.FC<IssuesProps> = ({ issues }) => {
   return (
     <div className='Issues'>
-      {issues.map(issue => {
+      {issues.map(({ id, state, title, labels, created_at, user }) => {
         return (
-          <Issue
-            key={issue.id}
-            id={issue.id}
-            text={issue.text}
-            isOpen={issue.isOpen}
-            ticketNumber={issue.number}
-            badges={issue.badges}
-          />
+          <div className='Issue' key={id}>
+            <Link
+              to={{
+                pathname: `/issue/${id}`,
+              }}
+            >
+              <div className='header d-inline'>
+                <span className='status'>
+                  {state === 'open' ? (
+                    <FontAwesomeIcon icon={faExclamationCircle} />
+                  ) : (
+                    <FontAwesomeIcon icon={faCheckCircle} />
+                  )}
+                </span>
+                <h5 className='title d-inline'>{title}</h5>
+              </div>
+            </Link>
+            <div className='labels d-inline'>
+              {labels.length
+                ? labels.map(({ id, color, name }) => {
+                    return (
+                      <span
+                        key={id}
+                        style={{ backgroundColor: `#${color}` }}
+                        className='label'
+                      >
+                        {name}
+                      </span>
+                    );
+                  })
+                : null}
+            </div>
+            <div className='infoTicket'>
+              <span className='id'>#{id} </span>
+              <span className='createdAt'> opened {created_at} </span>
+              <span className='by'> by {user.login}</span>
+            </div>
+          </div>
         );
       })}
     </div>

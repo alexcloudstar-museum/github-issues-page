@@ -6,6 +6,8 @@ import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 // API
 import { getIssues } from '../api';
 import Issues from './Issues/Issues';
+import Spinner from './Spinner/Spinner';
+import Pagination from './Pagination/Pagination';
 import Issue from './Issues/Issue';
 
 const App = () => {
@@ -16,7 +18,6 @@ const App = () => {
 
   useEffect(() => {
     getIssues().then(res => {
-      console.log(res);
       setIssues(res);
       setLoading(false);
     });
@@ -33,7 +34,7 @@ const App = () => {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <Spinner />
       ) : (
         <div className='App'>
           <Router basename='/'>
