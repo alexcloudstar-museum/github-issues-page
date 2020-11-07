@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './Issues.scss';
 
 import Markdown from '../MarkDown/Markdown';
 import Comments from '../Comments/Comments';

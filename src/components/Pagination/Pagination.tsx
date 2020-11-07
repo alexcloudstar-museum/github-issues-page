@@ -1,5 +1,32 @@
 import React from 'react';
-import './Pagination.scss';
+import styled from 'styled-components';
+
+const PaginationWrapper = styled.div`
+  list-style-type: none;
+  margin: 40px 0 0 0;
+
+  li {
+    display: inline-block;
+    margin: 0 5px;
+    border: 1px solid #f1f1f1;
+    background-color: #f1f1f1;
+    padding: 3px 10px;
+    font-size: 16px;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.active {
+      background-color: #eb4034 !important;
+
+      a {
+        color: #fff;
+      }
+    }
+  }
+`;
 
 const Pagination: React.FC<PaginationProps> = ({
   issuesPerPage,
@@ -14,7 +41,7 @@ const Pagination: React.FC<PaginationProps> = ({
   }
   return (
     <nav>
-      <ul className='pagination'>
+      <PaginationWrapper>
         {pageNumbers.map(number => (
           <li
             key={number}
@@ -24,7 +51,7 @@ const Pagination: React.FC<PaginationProps> = ({
             <span className='page-link'>{number}</span>
           </li>
         ))}
-      </ul>
+      </PaginationWrapper>
     </nav>
   );
 };
