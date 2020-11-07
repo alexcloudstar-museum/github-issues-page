@@ -1,3 +1,7 @@
+## Github Issues Page
+For using **gh-pages** with the application, **generate token && add it to repo's secret** with the same name as **.env** variable 🗝️
+And for local development add .env file with the variable  **REACT_APP_GITHUB_API_TOKEN**
+
 ![David](https://img.shields.io/david/alexcloudstar/github-issues-page?color=green&logo=yarn&logoColor=blue)
 ![CI](https://github.com/alexcloudstar/github-issues-page/workflows/CI/badge.svg)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/alexcloudstar/github-issues-page)
