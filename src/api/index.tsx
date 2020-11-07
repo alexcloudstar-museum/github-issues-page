@@ -2,7 +2,9 @@ import axios from 'axios';
 
 const url = 'https://api.github.com';
 
-const githubToken = `ce376cb338fe9e4f14c8b01d6da1c838c947b6c5`;
+const githubToken = process.env.REACT_APP_GITHUB_API_TOKEN;
+
+console.log(process.env);
 
 export const fetchIssues = async () => {
   return await axios.get(
