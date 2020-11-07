@@ -1,8 +1,9 @@
 import axios from 'axios';
-require('dotenv').config();
+const { REACT_APP_SECRET_KEY } = process.env;
 
 const url = 'https://api.github.com';
-const githubToken = process.env.github_token;
+
+const githubToken = REACT_APP_SECRET_KEY;
 
 export const fetchIssues = async () => {
   return await axios.get(
