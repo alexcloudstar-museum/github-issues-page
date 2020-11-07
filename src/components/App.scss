@@ -1,14 +1,16 @@
-html,body {
-    height: 100vh;
+html,
+body {
+  min-height: 100vh;
 }
 
 .App {
-    display: flex;
-    justify-content: center;
-    height: 100vh;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  //   height: 100vh;
+  align-items: center;
+  flex-direction: column;
 }
 
 li {
-    list-style-type: none;
+  list-style-type: none;
 }
