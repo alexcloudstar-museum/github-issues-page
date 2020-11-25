@@ -18,6 +18,7 @@ const App = () => {
 
   useEffect(() => {
     getIssues().then(res => {
+      console.log(res);
       setIssues(res);
       setLoading(false);
     });
