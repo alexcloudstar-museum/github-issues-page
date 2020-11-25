@@ -1,35 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
-import Markdown from '../MarkDown/Markdown';
-import Comments from '../Comments/Comments';
+// components
+import Markdown from 'components/MarkDown/Markdown';
+import Comments from 'components/Comments/Comments';
+import Spinner from 'components/Spinner/Spinner';
 
-import { getIssues } from '../../api';
-import Spinner from '../Spinner/Spinner';
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { getIssue } from 'store/actions/issueAction';
 
-const Issue: React.FC<IssueProps> = ({ match }) => {
-  const [issue, setIssue] = useState<issueProps>();
-  const [isLoading, setLoading] = useState<boolean>(true);
+const Issue: React.FC<IssueProps> = ({
+  match: {
+    params: { id },
+  },
+}) => {
+  const dispatch = useDispatch();
+  const issueState = useSelector((state: RootState) => state.issue);
 
   useEffect(() => {
-    getIssues().then(res => {
-      res.map((resIssues: any) => {
-        if (resIssues.id === match.params.id * 1) {
-          setIssue(resIssues);
-        }
-        return '';
-      });
-    });
-    setLoading(false);
-  }, [match.params.id]);
+    dispatch(getIssue(id));
+  }, [dispatch, id]);
 
   return (
     <>
-      {isLoading || issue === undefined || issue === null ? (
+      {issueState.loading ? (
         <Spinner />
       ) : (
         <React.Fragment>
-          {issue && <Markdown repoURL={issue.repository_url} />}
-          {issue && <Comments commentsURL={issue.comments_url} />}
+          {issueState.data?.repository_url && (
+            <Markdown repoURL={issueState.data?.repository_url} />
+          )}
+          {issueState.data?.repository_url && (
+            <Comments commentsURL={issueState.data?.comments_url} />
+          )}
         </React.Fragment>
       )}
     </>

@@ -7,11 +7,13 @@ import {
   faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
+// components
+import Spinner from 'components/Spinner/Spinner';
+
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store';
-import { getIssues, setLoading } from 'store/actions/issuesAction';
-import Spinner from 'components/Spinner/Spinner';
+import { getIssues } from 'store/actions/issuesAction';
 
 const IssuesWrapper = styled.div`
   height: 100%;
@@ -70,7 +72,6 @@ const Issues: React.FC<IssuesProps> = ({ issues }): JSX.Element => {
 
   useEffect(() => {
     dispatch(getIssues());
-    console.log(issuesData);
   }, [dispatch]);
 
   return (

@@ -1,8 +1,8 @@
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from 'store';
 
-import { GithubAction, GET_ISSUES, SET_LOADING, Issues } from 'store/types';
-import { url, githubToken, fetchIssues } from 'api';
+import { GithubAction, GET_ISSUES, Issues } from 'store/types';
+import { fetchIssues } from 'api';
 
 export const getIssues = (): ThunkAction<
   void,
@@ -21,13 +21,7 @@ export const getIssues = (): ThunkAction<
         payload: resData,
       });
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
-  };
-};
-
-export const setLoading = (): GithubAction => {
-  return {
-    type: SET_LOADING,
   };
 };

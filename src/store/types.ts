@@ -2,7 +2,6 @@ export const GET_ISSUES = 'GET_ISSUES';
 export const GET_ISSUE = 'GET_ISSUE';
 export const GET_COMMENTS = 'GET_COMMENTS';
 export const GET_MARKDOWN = 'GET_MARKDOWN';
-export const SET_LOADING = 'SET_LOADING';
 
 export interface Issues {
   id: number;
@@ -43,7 +42,7 @@ export interface Issue {
 }
 
 export interface IssueState {
-  data: Issue;
+  data: Issue | null;
   loading: boolean;
 }
 
@@ -78,13 +77,8 @@ interface GetRepoMDAction {
   payload: RepoMD;
 }
 
-interface SetLoadingAction {
-  type: typeof SET_LOADING;
-}
-
 export type GithubAction =
   | GetIssuesAction
   | GetIssueAction
   | GetCommentsAction
-  | GetRepoMDAction
-  | SetLoadingAction;
+  | GetRepoMDAction;

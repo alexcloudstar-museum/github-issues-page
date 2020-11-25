@@ -21,6 +21,12 @@ export const getIssues = async () => {
   return await issues.data.items;
 };
 
+export const getIssuePromise = async (id: number): Promise<any> => {
+  const issues = await getIssues();
+
+  return issues.find((issue: any) => issue.id === id * 1);
+};
+
 export const fetchIssueReadme = async (urlIssue: any) => {
   return await axios.get(`${urlIssue}/readme`);
 };
