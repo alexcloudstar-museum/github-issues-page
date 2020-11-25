@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +6,12 @@ import {
   faCheckCircle,
   faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
+
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { getIssues, setLoading } from 'store/actions/issuesAction';
+import Spinner from 'components/Spinner/Spinner';
 
 const IssuesWrapper = styled.div`
   height: 100%;
@@ -58,52 +64,69 @@ const IssuesWrapper = styled.div`
   }
 `;
 
-const Issues: React.FC<IssuesProps> = ({ issues }) => {
+const Issues: React.FC<IssuesProps> = ({ issues }): JSX.Element => {
+  const dispatch = useDispatch();
+  const issuesData = useSelector((state: RootState) => state.issues);
+
+  useEffect(() => {
+    dispatch(getIssues());
+    console.log(issuesData);
+  }, [dispatch]);
+
   return (
-    <IssuesWrapper>
-      {issues.map(({ id, state, title, labels, created_at, user }) => {
-        return (
-          <div className='Issue' key={id}>
-            <Link
-              to={{
-                pathname: `/issue/${id}`,
-              }}
-            >
-              <div className='header d-inline'>
-                <span className='status'>
-                  {state === 'open' ? (
-                    <FontAwesomeIcon icon={faExclamationCircle} />
-                  ) : (
-                    <FontAwesomeIcon icon={faCheckCircle} />
-                  )}
-                </span>
-                <h5 className='title d-inline'>{title}</h5>
-              </div>
-            </Link>
-            <div className='labels d-inline'>
-              {labels.length
-                ? labels.map(({ id, color, name }) => {
-                    return (
-                      <span
-                        key={id}
-                        style={{ backgroundColor: `#${color}` }}
-                        className='label'
-                      >
-                        {name}
-                      </span>
-                    );
-                  })
-                : null}
-            </div>
-            <div className='infoTicket'>
-              <span className='id'>#{id} </span>
-              <span className='createdAt'> opened {created_at} </span>
-              <span className='by'> by {user.login}</span>
-            </div>
-          </div>
-        );
-      })}
-    </IssuesWrapper>
+    <>
+      {issuesData.loading ? (
+        <Spinner />
+      ) : (
+        <IssuesWrapper>
+          {issuesData.data &&
+            issuesData.data.map(
+              ({ id, state, title, labels, created_at, user }) => {
+                return (
+                  <div className='Issue' key={id}>
+                    <Link
+                      to={{
+                        pathname: `/issue/${id}`,
+                      }}
+                    >
+                      <div className='header d-inline'>
+                        <span className='status'>
+                          {state === 'open' ? (
+                            <FontAwesomeIcon icon={faExclamationCircle} />
+                          ) : (
+                            <FontAwesomeIcon icon={faCheckCircle} />
+                          )}
+                        </span>
+                        <h5 className='title d-inline'>{title}</h5>
+                      </div>
+                    </Link>
+                    <div className='labels d-inline'>
+                      {labels.length
+                        ? labels.map(({ id, color, name }) => {
+                            return (
+                              <span
+                                key={id}
+                                style={{ backgroundColor: `#${color}` }}
+                                className='label'
+                              >
+                                {name}
+                              </span>
+                            );
+                          })
+                        : null}
+                    </div>
+                    <div className='infoTicket'>
+                      <span className='id'>#{id} </span>
+                      <span className='createdAt'> opened {created_at} </span>
+                      <span className='by'> by {user.login}</span>
+                    </div>
+                  </div>
+                );
+              }
+            )}
+        </IssuesWrapper>
+      )}
+    </>
   );
 };
 

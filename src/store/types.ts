@@ -81,3 +81,10 @@ interface GetRepoMDAction {
 interface SetLoadingAction {
   type: typeof SET_LOADING;
 }
+
+export type GithubAction =
+  | GetIssuesAction
+  | GetIssueAction
+  | GetCommentsAction
+  | GetRepoMDAction
+  | SetLoadingAction;
