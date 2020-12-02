@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useMemo } from 'react';
 
 // components
 import Markdown from 'components/MarkDown/Markdown';
@@ -18,9 +18,7 @@ const Issue: React.FC<IssueProps> = ({
   const dispatch = useDispatch();
   const issueState = useSelector((state: RootState) => state.issue);
 
-  useEffect(() => {
-    dispatch(getIssue(id));
-  }, [dispatch, id]);
+  useMemo(() => dispatch(getIssue(id)), [dispatch, id]);
 
   return (
     <>
@@ -40,4 +38,4 @@ const Issue: React.FC<IssueProps> = ({
   );
 };
 
-export default Issue;
+export default React.memo(Issue);

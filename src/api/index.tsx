@@ -27,14 +27,14 @@ export const getIssuePromise = async (id: number): Promise<any> => {
   return issues.find((issue: any) => issue.id === id * 1);
 };
 
-export const fetchIssueReadme = async (urlIssue: any) => {
+export const fetchIssueReadme = async (urlIssue: string) => {
   return await axios.get(`${urlIssue}/readme`);
 };
 
-export const renderIssueReadme = async (urlReadme: any) => {
+export const renderIssueReadme = async (urlReadme: string) => {
   return await axios.get(urlReadme);
 };
 
-export const getComments = async (urlComments: any) => {
+export const getComments = async (urlComments: string) => {
   return await axios.get(urlComments);
 };

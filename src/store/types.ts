@@ -56,12 +56,13 @@ export interface Comments {
 }
 
 export interface CommentsState {
-  data: Comments;
+  data: Comments[] | null;
+  loading: boolean;
 }
 
 interface GetCommentsAction {
   type: typeof GET_COMMENTS;
-  payload: Comments;
+  payload: Comments[];
 }
 
 export interface RepoMD {
@@ -69,7 +70,8 @@ export interface RepoMD {
 }
 
 export interface RepoMDState {
-  data: RepoMD;
+  data: RepoMD | null;
+  loading: boolean;
 }
 
 interface GetRepoMDAction {

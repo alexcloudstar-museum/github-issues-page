@@ -1,32 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import Spinner from 'components/Spinner/Spinner';
+import React, { useMemo } from 'react';
 import ReactMarkDown from 'react-markdown';
-import { fetchIssueReadme, renderIssueReadme } from '../../api/';
+
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { getMarkdown } from 'store/actions/repoMDAction';
 
 const Markdown: React.FC<MarkDownProps> = ({ repoURL }) => {
-  const [issueMDURL, setIssueMDURL] = useState<string>();
-  const [issueMD, setIssueMD] = useState<string>();
+  const dispatch = useDispatch();
+  const repoMDState = useSelector((state: RootState) => state.repoMD);
 
-  useEffect(() => {
-    fetchIssueReadme(repoURL).then(res => {
-      setIssueMDURL(res.data.download_url);
-    });
-
-    if (issueMDURL) {
-      renderIssueReadme(issueMDURL).then(res => {
-        setIssueMD(res.data);
-      });
-    } else {
-      setIssueMD("This repository don't have a MD");
-    }
-  }, [repoURL, issueMDURL]);
+  useMemo(() => dispatch(getMarkdown(repoURL)), [dispatch, repoURL]);
 
   return (
-    <React.Fragment>
-      <h5 style={{ fontSize: '1.5rem' }}>MD of the repository:</h5>
-      {issueMD && (
-        <ReactMarkDown source={issueMD} escapeHtml={true} className='issueMD' />
+    <>
+      {repoMDState.loading ? (
+        <Spinner />
+      ) : (
+        <>
+          <h5 style={{ fontSize: '1.5rem' }}>MD of the repository:</h5>
+          {repoMDState.data && (
+            <ReactMarkDown
+              source={repoMDState.data.toString()}
+              escapeHtml={true}
+              className='issueMD'
+            />
+          )}
+        </>
       )}
-    </React.Fragment>
+    </>
   );
 };
 
