@@ -1,7 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import ReactMarkDown from 'react-markdown';
-import { getComments } from '../../api/';
 import styled from 'styled-components';
+
+// redux
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store';
+import { getCommentsAction } from 'store/actions/commentsAction';
+import Spinner from 'components/Spinner/Spinner';
 
 const CommentsWrapper = styled.div`
   display: flex;
@@ -30,35 +35,40 @@ const CommentsWrapper = styled.div`
 `;
 
 const Comments: React.FC<CommentsProps> = ({ commentsURL }) => {
-  const [comments, setComments] = useState<[]>([]);
+  const dispatch = useDispatch();
+  const commentsState = useSelector((state: RootState) => state.comments);
 
-  useEffect(() => {
-    getComments(commentsURL).then(res => {
-      setComments(res.data);
-    });
-  }, [commentsURL]);
+  useMemo(() => dispatch(getCommentsAction(commentsURL)), [
+    dispatch,
+    commentsURL,
+  ]);
 
   return (
-    <CommentsWrapper>
-      <h3>Comments:</h3>
-      {comments.map(
-        (comment: { id: number; user: { login: string }; body: string }) => {
-          return (
-            <React.Fragment key={comment.id}>
-              <div className='CommentBody'>
-                <span className='User'>{comment.user.login}</span>
-                <ReactMarkDown
-                  source={comment.body}
-                  escapeHtml={true}
-                  className='CommentsMarkDown'
-                />
-              </div>
-            </React.Fragment>
-          );
-        }
+    <>
+      {commentsState.loading ? (
+        <Spinner />
+      ) : (
+        <CommentsWrapper>
+          <h3 style={{ color: 'red' }}>Comments:</h3>
+          {commentsState.data &&
+            commentsState.data.map((comment: any) => {
+              return (
+                <React.Fragment key={comment.id}>
+                  <div className='CommentBody'>
+                    <span className='User'>{comment.user.login}</span>
+                    <ReactMarkDown
+                      source={comment.body}
+                      escapeHtml={true}
+                      className='CommentsMarkDown'
+                    />
+                  </div>
+                </React.Fragment>
+              );
+            })}
+        </CommentsWrapper>
       )}
-    </CommentsWrapper>
+    </>
   );
 };
 
-export default Comments;
+export default React.memo(Comments);

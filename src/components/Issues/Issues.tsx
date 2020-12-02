@@ -7,6 +7,9 @@ import {
   faExclamationCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
+// components
+import Spinner from 'components/Spinner/Spinner';
+
 const IssuesWrapper = styled.div`
   height: 100%;
   border: 1px solid #ccc;
@@ -58,52 +61,63 @@ const IssuesWrapper = styled.div`
   }
 `;
 
-const Issues: React.FC<IssuesProps> = ({ issues }) => {
+const Issues: React.FC<IssuesProps> = (data, loading): JSX.Element => {
+  const { issues } = data;
+
   return (
-    <IssuesWrapper>
-      {issues.map(({ id, state, title, labels, created_at, user }) => {
-        return (
-          <div className='Issue' key={id}>
-            <Link
-              to={{
-                pathname: `/issue/${id}`,
-              }}
-            >
-              <div className='header d-inline'>
-                <span className='status'>
-                  {state === 'open' ? (
-                    <FontAwesomeIcon icon={faExclamationCircle} />
-                  ) : (
-                    <FontAwesomeIcon icon={faCheckCircle} />
-                  )}
-                </span>
-                <h5 className='title d-inline'>{title}</h5>
-              </div>
-            </Link>
-            <div className='labels d-inline'>
-              {labels.length
-                ? labels.map(({ id, color, name }) => {
-                    return (
-                      <span
-                        key={id}
-                        style={{ backgroundColor: `#${color}` }}
-                        className='label'
-                      >
-                        {name}
+    <>
+      {data.loading ? (
+        <Spinner />
+      ) : (
+        <IssuesWrapper>
+          {issues &&
+            issues.map((issue: any) => {
+              return (
+                <div className='Issue' key={issue.id}>
+                  <Link
+                    to={{
+                      pathname: `/issue/${issue.id}`,
+                    }}
+                  >
+                    <div className='header d-inline'>
+                      <span className='status'>
+                        {issue.state === 'open' ? (
+                          <FontAwesomeIcon icon={faExclamationCircle} />
+                        ) : (
+                          <FontAwesomeIcon icon={faCheckCircle} />
+                        )}
                       </span>
-                    );
-                  })
-                : null}
-            </div>
-            <div className='infoTicket'>
-              <span className='id'>#{id} </span>
-              <span className='createdAt'> opened {created_at} </span>
-              <span className='by'> by {user.login}</span>
-            </div>
-          </div>
-        );
-      })}
-    </IssuesWrapper>
+                      <h5 className='title d-inline'>{issue.title}</h5>
+                    </div>
+                  </Link>
+                  <div className='labels d-inline'>
+                    {issue.labels.length &&
+                      issue.labels.map((label: any) => {
+                        return (
+                          <span
+                            key={label.id}
+                            style={{ backgroundColor: `#${label.color}` }}
+                            className='label'
+                          >
+                            {issue.name}
+                          </span>
+                        );
+                      })}
+                  </div>
+                  <div className='infoTicket'>
+                    <span className='id'>#{issue.id} </span>
+                    <span className='createdAt'>
+                      {' '}
+                      opened {issue.created_at}{' '}
+                    </span>
+                    <span className='by'> by {issue.user.login}</span>
+                  </div>
+                </div>
+              );
+            })}
+        </IssuesWrapper>
+      )}
+    </>
   );
 };
 
