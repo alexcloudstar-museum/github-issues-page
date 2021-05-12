@@ -13,7 +13,7 @@
 		}
 	],
 	"bugs": {
-		"web": "https://github.com/alexcloudstar/hacker-news-search/issues"
+		"web": "https://github.com/alexcloudstar/github-issues-page/issues"
 	},
 	"scripts": {
 		"start:dev": "webpack-cli serve --mode=development --env development --open --hot",
