@@ -15,6 +15,13 @@ declare module 'styled-components' {
 				lg: string;
 				xl: string;
 			};
+			weight: {
+				light: number;
+				regular: number;
+				medium: number;
+				bold: number;
+				black: number;
+			};
 		};
 		palette: {
 			common: {
@@ -22,7 +29,6 @@ declare module 'styled-components' {
 				white: string;
 			};
 			primary: IPalette;
-			secondary: IPalette;
 		};
 		mediaQuery: {
 			xs: string;

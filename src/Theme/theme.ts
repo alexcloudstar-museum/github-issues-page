@@ -5,23 +5,26 @@ export const defaultTheme: DefaultTheme = {
 		sizes: {
 			xs: '14px',
 			sm: '16px',
-            md: '18px',
-            lg: '24px',
-            xl: '32px',
+			md: '18px',
+			lg: '24px',
+			xl: '32px'
+		},
+		weight: {
+			light: 300,
+			regular: 400,
+			medium: 500,
+			bold: 700,
+			black: 900
 		}
 	},
-    palette: {
-        common: {
-            black: '#222831',
-			white: '#ffffff',
-        },
-        primary: {
-			main: '#914bb4',
-			contrastText: '#ffffff'
+	palette: {
+		common: {
+			black: '#222831',
+			white: '#ffffff'
 		},
-		secondary: {
-			main: '#6eb44b',
-			contrastText: '#ffffff'
+		primary: {
+			main: '#161B22',
+			contrastText: '#8b949e'
 		}
 	},
 	mediaQuery: {
@@ -31,5 +34,4 @@ export const defaultTheme: DefaultTheme = {
 		lg: '991px',
 		xl: '1199px'
 	}
-    }
 };
