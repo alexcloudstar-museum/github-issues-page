@@ -20,11 +20,12 @@ export const defaultTheme: DefaultTheme = {
 	palette: {
 		common: {
 			black: '#222831',
-			white: '#ffffff'
+			white: '#ffffff',
+			grey: '#8b949e'
 		},
 		primary: {
 			main: '#161B22',
-			contrastText: '#8b949e'
+			contrastText: '#30363d'
 		}
 	},
 	mediaQuery: {
