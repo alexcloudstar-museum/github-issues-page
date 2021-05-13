@@ -1,4 +1,4 @@
-import { ActionType } from '../action-types';
+import { ActionType } from '../actionTypes';
 import { IIssue } from '../types';
 
 export interface IssuesState {

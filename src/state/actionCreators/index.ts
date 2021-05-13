@@ -7,7 +7,7 @@ import {
 	getIssuePromise,
 	renderIssueReadme
 } from 'src/services/github';
-import { ActionType } from '../action-types';
+import { ActionType } from '../actionTypes';
 import {
 	GithubAction,
 	GetIssuesAction,
