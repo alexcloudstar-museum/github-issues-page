@@ -49,6 +49,14 @@ body {
 		margin: 50px;
 	}
 }
+
+#root {
+	width: 50%;
+	margin: 0 auto;
+	display: flex;
+    align-items: center;
+	justify-content: center;
+}
 `;
 
 export default GlobalStyles;
