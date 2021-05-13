@@ -16,6 +16,8 @@ const reducer = produce(
 					loading: false
 				};
 				return state;
+			default:
+				return state;
 		}
 	}
 );
