@@ -1,13 +1,24 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
+import { useActions } from 'src/hooks/useActions';
+import { useTypedSelector } from 'src/hooks/useTypedSelector';
 import { Issues } from 'src/shared/components';
 import Header from '../components/Header';
 import { ContentWrapper } from '../style';
 
 const Content: FC = (): JSX.Element => {
+	const issues = useTypedSelector(({ issues }) =>
+		issues.data?.map((issue) => issue)
+	);
+	const { getIssues } = useActions();
+
+	useEffect(() => {
+		getIssues();
+	}, [getIssues]);
+
 	return (
 		<ContentWrapper>
 			<Header />
-			<Issues />
+			<Issues issues={issues} />
 		</ContentWrapper>
 	);
 };

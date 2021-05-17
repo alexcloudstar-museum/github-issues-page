@@ -3,12 +3,13 @@ import { BadgeWrapper, StyledBadge } from './style';
 
 interface IBadge {
 	label: string;
+	bgcolor: string;
 }
 
-const Badge: FC<IBadge> = ({ label }): JSX.Element => {
+const Badge: FC<IBadge> = ({ label, bgcolor }): JSX.Element => {
 	return (
 		<BadgeWrapper>
-			<StyledBadge label={label} />
+			<StyledBadge label={label} bgcolor={bgcolor} />
 		</BadgeWrapper>
 	);
 };

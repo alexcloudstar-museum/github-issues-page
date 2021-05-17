@@ -1,24 +1,43 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import Issue from './Issue';
 import { IssuesWrapper } from '../style';
-import { useActions } from 'src/hooks/useActions';
-import { useTypedSelector } from 'src/hooks/useTypedSelector';
 
-const Issues: FC = (): JSX.Element => {
-	const issues = useTypedSelector(({ issues }) =>
-		issues.data?.map((issue) => issue)
-	);
-	const { getIssues } = useActions();
+import { IIssuesProps } from '../IssuesType';
 
-	useEffect(() => {
-		getIssues();
-	}, [getIssues]);
-
+const Issues: FC<IIssuesProps> = ({ issues }): JSX.Element => {
 	return (
 		<IssuesWrapper>
 			<h1>Issues</h1>
-			<Issue />
+
+			{issues?.map(
+				({
+					id,
+					title,
+					created_at,
+					isOpen,
+					labels,
+					state,
+					text,
+					ticketNumber,
+					user
+				}) => (
+					<Issue
+						key={id}
+						issue={{
+							id,
+							title,
+							created_at,
+							isOpen,
+							labels,
+							state,
+							text,
+							ticketNumber,
+							user
+						}}
+					/>
+				)
+			)}
 		</IssuesWrapper>
 	);
 };

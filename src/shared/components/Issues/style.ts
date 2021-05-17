@@ -12,9 +12,26 @@ export const IssuesWrapper = styled(Box)`
 		border: 1px solid ${({ theme }) => theme.palette.common.white};
 	}
 `;
-export const IssueWrapper = styled(Box)``;
+export const IssueWrapper = styled(Box)`
+	padding: 10px 5px;
+	display: flex;
+	align-items: center;
+
+	border-bottom: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
+
+	&:hover {
+		background-color: ${({ theme }) => theme.palette.primary.main};
+		border: 1px solid ${({ theme }) => theme.palette.common.white};
+	}
+
+	h1 {
+		margin-right: 10px;
+	}
+`;
 
 export const IssueSmallText = styled.span`
 	color: ${({ theme }) => theme.palette.common.grey};
 	font-size: ${({ theme }) => theme.typography.sizes.xs};
+
+	margin-right: 10px;
 `;

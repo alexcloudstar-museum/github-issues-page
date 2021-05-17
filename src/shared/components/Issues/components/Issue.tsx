@@ -6,16 +6,34 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { IssueSmallText, IssueWrapper } from '../style';
 import { Badge } from 'src/shared/components';
+import { IIssueProps } from '../IssuesType';
+import { DateTime } from 'luxon';
 
-const Issue: FC = (): JSX.Element => {
+const Issue: FC<IIssueProps> = ({ issue }): JSX.Element => {
+	const {
+		id,
+		title,
+		created_at,
+		isOpen,
+		labels,
+		state,
+		text,
+		ticketNumber,
+		user
+	} = issue;
+
 	return (
 		<IssueWrapper>
-			<h1>
-				babel-preset-react-app useESModules option no longer transpiling to ESM
-				in version 10.x
-			</h1>
-			<Badge label="Basic" />
-			<IssueSmallText>#10956 opened 1 hour ago by FjVillar</IssueSmallText>
+			<h1>{title}</h1>
+			<IssueSmallText>
+				{ticketNumber} on{' '}
+				{DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_SHORT)} by{' '}
+				{user.login}
+			</IssueSmallText>
+			{labels &&
+				labels.map((label) => (
+					<Badge key={label.name} label={label.name} bgcolor={label.color} />
+				))}
 		</IssueWrapper>
 	);
 };

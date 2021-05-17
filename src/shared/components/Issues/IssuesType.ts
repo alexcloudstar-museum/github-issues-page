@@ -1,7 +1,8 @@
-interface IIsuesProps {
-	placeholderParam?: string;
-}
+import { IIssue } from 'src/state/types';
 
-interface IIsueProps {
-	placeholderParam?: string;
+export interface IIssuesProps {
+	issues: IIssue[];
+}
+export interface IIssueProps {
+	issue: IIssue;
 }

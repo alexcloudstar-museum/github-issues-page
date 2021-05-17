@@ -8,7 +8,7 @@ export const githubToken = process.env.REACT_APP_GITHUB_API_TOKEN;
 
 export const fetchIssues = async (): Promise<AxiosResponse<any>> => {
 	return await axios.get(
-		`${url}/search/issues?q={facebook}&per_page=100&page_number=1`,
+		`${url}/search/issues?q={react}&per_page=100&page_number=1`,
 		{
 			headers: {
 				Authorization: `token ${githubToken}`
