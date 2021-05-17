@@ -1,12 +1,12 @@
 # **Steps to install and run project**
 
-**1. Create .env file**
-**2. Generate token https://github.com/settings/tokens**
-**3. Create same strucutre as .env.template**
-**4. Run yarn && yarn start** 
-**5. Enjoy**
+**1. Create .env file** <br/>
+**2. Generate token https://github.com/settings/tokens** <br/>
+**3. Create same strucutre as .env.template** <br/>
+**4. Run yarn && yarn start** <br/>
+**5. Enjoy** <br/> <br/>
 
-Report issues: https://github.com/alexcloudstar/github-issues-page/issues
+Report issues: https://github.com/alexcloudstar/github-issues-page/issues <br/>
 contact: contact@alexcloudstar.com
 
 ![David](https://img.shields.io/david/alexcloudstar/github-issues-page?color=green&logo=yarn&logoColor=blue)
