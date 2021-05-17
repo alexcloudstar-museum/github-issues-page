@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { Box } from '@material-ui/core';
 
 export const IssuesWrapper = styled(Box)`
-	padding: 10px;
 	cursor: pointer;
 	transition: 0.3s all ease;
 	border: 1px solid ${({ theme }) => theme.palette.primary.contrastText};
@@ -13,7 +12,7 @@ export const IssuesWrapper = styled(Box)`
 	}
 `;
 export const IssueWrapper = styled(Box)`
-	padding: 10px 5px;
+	padding: 10px;
 	display: flex;
 	align-items: center;
 
