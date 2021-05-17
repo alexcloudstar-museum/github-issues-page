@@ -20,15 +20,12 @@ import {
 import { RootState } from '../reducers';
 import { IIssue } from '../types';
 
-export const getIssues = (): ThunkAction<
-	void,
-	RootState,
-	null,
-	GithubAction
-> => {
+export const getIssues = (
+	keyword: string
+): ThunkAction<void, RootState, null, GithubAction> => {
 	return async (dispatch: Dispatch<Action>) => {
 		try {
-			const res = await fetchIssues();
+			const res = await fetchIssues(keyword);
 
 			const resData: IIssue[] = await res.data.items;
 
@@ -43,11 +40,12 @@ export const getIssues = (): ThunkAction<
 };
 
 export const getIssue = (
-	id: number
+	id: number,
+	keyword: string
 ): ThunkAction<void, RootState, null, GithubAction> => {
 	return async (dispatch: Dispatch<Action>) => {
 		try {
-			const res = await getIssuePromise(id);
+			const res = await getIssuePromise(id, keyword);
 
 			const resData: IIssue = await res;
 

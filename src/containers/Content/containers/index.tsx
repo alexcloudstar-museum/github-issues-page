@@ -9,11 +9,6 @@ const Content: FC = (): JSX.Element => {
 	const issues = useTypedSelector(({ issues }) =>
 		issues.data?.map((issue) => issue)
 	);
-	const { getIssues } = useActions();
-
-	useEffect(() => {
-		getIssues();
-	}, [getIssues]);
 
 	return (
 		<ContentWrapper>

@@ -10,17 +10,7 @@ import { IIssueProps } from '../IssuesType';
 import { DateTime } from 'luxon';
 
 const Issue: FC<IIssueProps> = ({ issue }): JSX.Element => {
-	const {
-		id,
-		title,
-		created_at,
-		isOpen,
-		labels,
-		state,
-		text,
-		ticketNumber,
-		user
-	} = issue;
+	const { title, created_at, labels, ticketNumber, user } = issue;
 
 	return (
 		<IssueWrapper>

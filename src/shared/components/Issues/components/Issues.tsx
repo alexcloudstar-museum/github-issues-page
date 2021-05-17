@@ -8,36 +8,19 @@ import { IIssuesProps } from '../IssuesType';
 const Issues: FC<IIssuesProps> = ({ issues }): JSX.Element => {
 	return (
 		<IssuesWrapper>
-			<h1>Issues</h1>
-
-			{issues?.map(
-				({
-					id,
-					title,
-					created_at,
-					isOpen,
-					labels,
-					state,
-					text,
-					ticketNumber,
-					user
-				}) => (
-					<Issue
-						key={id}
-						issue={{
-							id,
-							title,
-							created_at,
-							isOpen,
-							labels,
-							state,
-							text,
-							ticketNumber,
-							user
-						}}
-					/>
-				)
-			)}
+			{issues?.map(({ id, title, created_at, labels, ticketNumber, user }) => (
+				<Issue
+					key={id}
+					issue={{
+						id,
+						title,
+						created_at,
+						labels,
+						ticketNumber,
+						user
+					}}
+				/>
+			))}
 		</IssuesWrapper>
 	);
 };

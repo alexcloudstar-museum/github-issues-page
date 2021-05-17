@@ -6,9 +6,11 @@ export const url = 'https://api.github.com';
 
 export const githubToken = process.env.REACT_APP_GITHUB_API_TOKEN;
 
-export const fetchIssues = async (): Promise<AxiosResponse<any>> => {
+export const fetchIssues = async (
+	keyword: string
+): Promise<AxiosResponse<any>> => {
 	return await axios.get(
-		`${url}/search/issues?q={react}&per_page=100&page_number=1`,
+		`${url}/search/issues?q={${keyword}}&per_page=100&page_number=1`,
 		{
 			headers: {
 				Authorization: `token ${githubToken}`
@@ -17,14 +19,17 @@ export const fetchIssues = async (): Promise<AxiosResponse<any>> => {
 	);
 };
 
-export const getIssues = async () => {
-	const issues = await fetchIssues();
+export const getIssues = async (keyword: string) => {
+	const issues = await fetchIssues(keyword);
 
 	return await issues.data.items;
 };
 
-export const getIssuePromise = async (id: number): Promise<any> => {
-	const issues = await getIssues();
+export const getIssuePromise = async (
+	id: number,
+	keyword: string
+): Promise<any> => {
+	const issues = await getIssues(keyword);
 
 	return issues.find((issue: any) => issue.id === id * 1);
 };
