@@ -5,7 +5,7 @@ import { PaginationWrapper } from './style';
 interface PaginationProps {
 	issuesPerPage: number;
 	totalIssues: number;
-	paginate: (pageNumber) => any;
+	paginate: (pageNumber) => void;
 	currentPage: number;
 }
 
