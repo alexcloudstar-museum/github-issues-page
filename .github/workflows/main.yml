@@ -23,7 +23,7 @@ jobs:
         node-version: 13.x
     
     - name: Install NPM packages
-      run: npm ci
+      run: yarn
     
     - name: Build project
       run: npm run build
