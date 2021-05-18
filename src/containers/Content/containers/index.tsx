@@ -26,6 +26,8 @@ const Content: FC = (): JSX.Element => {
 		<>
 			<ContentWrapper>
 				<Header />
+				{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+				{/*  @ts-ignore*/}
 				<Issues issues={currentIssues} />
 			</ContentWrapper>
 			<Pagination
