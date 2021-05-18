@@ -21,10 +21,26 @@ export const IssueWrapper = styled(Box)`
 	&:hover {
 		background-color: ${({ theme }) => theme.palette.primary.main};
 		border: 1px solid ${({ theme }) => theme.palette.common.white};
+
+		a,
+		span,
+		h1 {
+			color: ${({ theme }) => theme.palette.common.white};
+		}
 	}
 
 	h1 {
 		margin-right: 10px;
+	}
+
+	a {
+		color: ${({ theme }) => theme.palette.common.grey};
+		font-size: ${({ theme }) => theme.typography.sizes.xs};
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-right: 10px;
+		text-decoration: none;
 	}
 `;
 

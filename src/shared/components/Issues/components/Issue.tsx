@@ -4,6 +4,7 @@ import {
 	faCheckCircle,
 	faExclamationCircle
 } from '@fortawesome/free-solid-svg-icons';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { IssueSmallText, IssueWrapper } from '../style';
 import { Badge } from 'src/shared/components';
 import { IIssueProps } from '../IssuesType';
@@ -23,8 +24,11 @@ const Issue: FC<IIssueProps> = ({ issue }): JSX.Element => {
 	} = issue;
 
 	return (
-		<Link to={{ pathname: `/issue/${id}`, state: { body } }}>
-			<IssueWrapper>
+		<IssueWrapper>
+			<Link to={{ pathname: `/issue/${id}`, state: { body } }}>
+				{state === 'open' && (
+					<ErrorOutlineIcon style={{ marginRight: '10px' }} />
+				)}
 				<h1>{title}</h1>
 				<IssueSmallText>
 					{ticketNumber} on{' '}
@@ -35,8 +39,8 @@ const Issue: FC<IIssueProps> = ({ issue }): JSX.Element => {
 					labels.map((label) => (
 						<Badge key={label.name} label={label.name} bgcolor={label.color} />
 					))}
-			</IssueWrapper>
-		</Link>
+			</Link>
+		</IssueWrapper>
 	);
 };
 

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Markdown } from 'src/shared/components';
 
 interface IIssueBody {
 	location: {
@@ -9,7 +10,7 @@ interface IIssueBody {
 }
 
 const IssueBody: FC<IIssueBody> = ({ location }): JSX.Element => {
-	return <div>{location.state.body}</div>;
+	return <Markdown body={location.state.body} />;
 };
 
 export default IssueBody;
