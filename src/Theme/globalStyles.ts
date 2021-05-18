@@ -57,6 +57,10 @@ body {
     align-items: center;
 	justify-content: center;
 }
+
+img {
+	width: 100%;
+}
 `;
 
 export default GlobalStyles;
