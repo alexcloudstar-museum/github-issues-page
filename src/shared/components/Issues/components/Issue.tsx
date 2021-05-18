@@ -31,8 +31,8 @@ const Issue: FC<IIssueProps> = ({ issue }): JSX.Element => {
 					{user.login}
 				</IssueSmallText>
 				{labels &&
-					labels.map((label) => (
-						<Badge key={label.name} label={label.name} bgcolor={label.color} />
+					labels.map(({ name, color }) => (
+						<Badge key={name} label={name} bgcolor={color} />
 					))}
 			</Link>
 		</IssueWrapper>
