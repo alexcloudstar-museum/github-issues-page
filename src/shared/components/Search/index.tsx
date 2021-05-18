@@ -8,20 +8,18 @@ interface ISearch {
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Search: FC<ISearch> = ({ keyword, onChange }): JSX.Element => {
-	return (
-		<SearchWrapper>
-			<div>
-				<SearchIcon />
-			</div>
-			<InputBase
-				value={keyword}
-				placeholder="Search…"
-				inputProps={{ 'aria-label': 'search' }}
-				onChange={onChange}
-			/>
-		</SearchWrapper>
-	);
-};
+const Search: FC<ISearch> = ({ keyword, onChange }): JSX.Element => (
+	<SearchWrapper>
+		<div>
+			<SearchIcon />
+		</div>
+		<InputBase
+			value={keyword}
+			placeholder="Search…"
+			inputProps={{ 'aria-label': 'search' }}
+			onChange={onChange}
+		/>
+	</SearchWrapper>
+);
 
 export default Search;

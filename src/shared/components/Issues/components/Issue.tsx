@@ -1,9 +1,4 @@
 import React, { FC } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-	faCheckCircle,
-	faExclamationCircle
-} from '@fortawesome/free-solid-svg-icons';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { IssueSmallText, IssueWrapper } from '../style';
 import { Badge } from 'src/shared/components';

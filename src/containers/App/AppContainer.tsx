@@ -18,8 +18,6 @@ const AppContainer = (): JSX.Element => {
 		!keyword ? getIssues('react') : getIssues(keyword);
 	}, [getIssues, keyword]);
 
-	console.log(issues);
-
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setKeyword(e.target.value);
 	};

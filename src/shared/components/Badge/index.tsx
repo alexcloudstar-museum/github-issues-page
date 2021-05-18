@@ -1,17 +1,11 @@
 import React, { FC } from 'react';
+import { IBadge } from './IBadge';
 import { BadgeWrapper, StyledBadge } from './style';
 
-interface IBadge {
-	label: string;
-	bgcolor: string;
-}
-
-const Badge: FC<IBadge> = ({ label, bgcolor }): JSX.Element => {
-	return (
-		<BadgeWrapper>
-			<StyledBadge label={label} bgcolor={bgcolor} />
-		</BadgeWrapper>
-	);
-};
+const Badge: FC<IBadge> = ({ label, bgcolor }): JSX.Element => (
+	<BadgeWrapper>
+		<StyledBadge label={label} bgcolor={bgcolor} />
+	</BadgeWrapper>
+);
 
 export default Badge;
