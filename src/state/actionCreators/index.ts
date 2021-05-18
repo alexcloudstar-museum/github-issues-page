@@ -8,15 +8,7 @@ import {
 	renderIssueReadme
 } from 'src/services/github';
 import { ActionType } from '../actionTypes';
-import {
-	GithubAction,
-	GetIssuesAction,
-	GetIssueAction,
-	GetCommentsAction,
-	GetRepoMDAction,
-	IComments,
-	RepoMD
-} from '../actions';
+import { GithubAction, IComments, RepoMD } from '../actions';
 import { RootState } from '../reducers';
 import { IIssue } from '../types';
 

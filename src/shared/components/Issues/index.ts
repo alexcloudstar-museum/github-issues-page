@@ -1,1 +1,1 @@
-export { Issues, Issue } from './components';
+export { Issues, Issue, IssueBody } from './components';
